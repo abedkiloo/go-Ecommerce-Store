@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
+	"github.com/kelseyhightower/envconfig"
 	"log"
 	"net/http"
 )
