@@ -51,6 +51,6 @@ func (a accountService) GetAccounts(ctx context.Context, skip uint64, take uint6
 
 }
 
-func newService(r Repository) Service {
+func NewService(r Repository) Service {
 	return &accountService{r}
 }
