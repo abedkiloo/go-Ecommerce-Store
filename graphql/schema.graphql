@@ -15,7 +15,7 @@ type Product {
 
 type Order {
     id: String!
-    cratedAt: Time!
+    createdAt: Time!
     totalPrice:Float!
     products:[OrderedProduct!]!
 }
