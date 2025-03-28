@@ -3,27 +3,23 @@ package account
 import (
 	"context"
 	"fmt"
+	"github.com/abedkiloo/go-Ecommerce-Simulation/account/github.com/abedkiloo/go-Ecommerce-Store/pb" // Import generated protobuf package
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"net"
-	 "github.com/abedkiloo/go-Ecommerce-Similutaion/pb" // Import generated protobuf package
-
 )
 
 type grpcServer struct {
 	service Service
 }
 
-func ListenGRPC(service Service, port int) error {
+func ListenGRPC(s Service, port int) error {
 	listen, err := net.Listen("tcp", fmt.Sprintf("%d", port))
 	if err != nil {
 		return nil
 	}
 	serv := grpc.NewServer()
-	pb.
-	{
-		serv,
-	}
+	pb.RegisterAccountServiceServer(serv, &grpcServer{s})
 	reflection.Register(serv)
 	return serv.Serve(listen)
 }
