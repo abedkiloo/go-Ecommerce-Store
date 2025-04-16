@@ -3,7 +3,7 @@ package account
 import (
 	"context"
 	"fmt"
-	"github.com/abedkiloo/go-Ecommerce-Simulation/account/github.com/abedkiloo/go-Ecommerce-Store/pb" // Import generated protobuf package
+	"github.com/abedkiloo/go-Ecommerce-Simulation/account/pb" // Import generated protobuf package
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"net"
@@ -35,7 +35,7 @@ func (s *grpcServer) PostAccount(ctx context.Context, r *pb.PostAccountRequest) 
 	}}, nil
 }
 func (s *grpcServer) GetAccount(ctx context.Context, r *pb.GetAccountRequest) (*pb.GetAccountResponse, error) {
-	account, err := s.service.GetAccounts(ctx, r.ID)
+	account, err := s.service.GetAccount(ctx, r.Id)
 	if err != nil {
 		return nil, err
 	}
@@ -45,11 +45,11 @@ func (s *grpcServer) GetAccount(ctx context.Context, r *pb.GetAccountRequest) (*
 	}}, nil
 }
 func (s *grpcServer) GetAccounts(ctx context.Context, r *pb.GetAccountsRequest) (*pb.GetAccountsResponse, error) {
-	res, err := s.service.GetAccounts(ctx, r.ID)
+	res, err := s.service.GetAccounts(ctx, r.Skip, r.Take)
 	if err != nil {
 		return nil, err
 	}
-	accounts := []*pb.ACcount{}
+	accounts := []*pb.Account{}
 	for _, p := range res {
 		accounts = append(accounts, &pb.Account{
 			Id:   p.ID,
